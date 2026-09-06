@@ -1,0 +1,60 @@
+body {
+    background-image: url("image/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.navbar {
+    background-color: #1f2937;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    align-items: center;
+    background-size: cover;
+}
+
+#nav-links a{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8%;
+    position: relative;
+}
+
+#nav-links {
+    display: flex;
+    padding-right: 13%;
+}
+
+.navbar a:hover {
+    color: #5da2e7;
+}
+
+#navname {
+    color: white;
+    font-size: 18px;
+    align-items: left;
+    padding-left: 3%;
+}
+
+#yearreport {
+    background: radial-gradient(#f7f7f7, #666666);
+    width: 50%;
+    margin: 0 auto;
+    height: 500px;
+    border-radius: 20px;
+    border: 5px double #070707;
+}
+
+.yearreport{
+    text-align: center;
+    padding: 15px;
+}

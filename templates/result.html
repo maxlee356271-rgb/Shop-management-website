@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css')}}"/>
+</head>
+<body>
+    <nav class="navbar">
+        <div id="navname">
+            <h2>Shop Management</h2>
+        </div>
+        <div id="nav-links">
+            <a href="/">Home</a>
+            <a href="/cal">Calculator</a>
+            <a href="/stat">Statistic</a>
+            <a href="/stocks">Stocks</a>
+        </div>
+    </nav>
+    <br><br>
+    <div id="card">
+        <div id="totalsold" class="card">
+            <h1>Total Sold</h1>
+            <br>
+            <p>{{ totalprice }}</p>
+        </div>
+        <div id="totalsoldqty" class="card">
+            <h1>Total Sold</h1>
+            <br>
+            <p>{{ totalqty }}</p>
+        </div>
+        <div id="tps" class="card">
+            <h1>Tps</h1>
+            <br>
+            <p>{{ tpsname }}</p>
+            <p>{{ tps }}</p>
+        </div>
+        <div id="tpqty" class="card">
+            <h1>Tpqty</h1>
+            <br>
+            <p>{{ tpqty }}</p>
+            <p>{{ tpqtyname }}</p>
+        </div>
+    </div>
+    <div id="tablecard">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Average</th>
+            </tr>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

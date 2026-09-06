@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Calculator.css')}}"/>
+</head>
+<body>
+    <nav class="navbar">
+        <div id="navname">
+            <h2>Shop Management</h2>
+        </div>
+        <div id="nav-links">
+            <a href="/">Home</a>
+            <a href="/cal">Calculator</a>
+            <a href="/stat">Statistic</a>
+            <a href="/stocks">Stocks</a>
+        </div>
+    </nav>
+    <br><br><br><br><br><br><br><br>
+    <div id="alert-box">
+    </div>
+    <div class="container">
+        <br><br>
+        <div id="excel-file">
+            <label id="upload" for="fileInput">
+                <h4>Drop files here or click to upload</h4>
+            </label>
+            <input type="file" id="fileInput" name="file" class="fileinput" onchange="upload()">
+        </div>
+        <br><br>
+        <div class="Shop-type">
+            Choose Shop Type
+            <br><br>
+            <button id="shopee" class="shop-type" name="type" value="Shopee" onclick="selected(this)"><img src="{{ url_for('static', filename='image/Shopee.png') }}" width="50" height="50"></button>
+            <button id="tktok" class="shop-type" name="type" value="Tiktok" onclick="selected(this)"><img src="{{ url_for('static', filename='image/Tiktok.png') }}" width="50" height="50"></button>
+            <br><br>
+        </div>
+        <div class="Calculate">
+            <button class="Calculate-button" onclick="result()">Calculate</button>
+        </div>
+    </div>
+</body>
+<script>
+    let selectedshop = ""
+    let file = ""
+    function upload() {
+        file = document.getElementById("fileInput")
+        const formdata = new FormData()
+        formdata.append("file", fileInput.files[0]);
+        fetch("/upload", {method: "POST", body: formdata}).then(response => response.text()).then(data => {console.log(data), alert(data)});
+    };
+
+    function selected(button) {
+        selectedshop = button.value
+        document.querySelectorAll(".shop-type").forEach(btn => {
+        btn.classList.remove("selected");
+        });
+
+        button.classList.add("selected");
+    };
+
+    function alert(status) {
+        const alertBox = document.getElementById("alert-box");
+        if (status === "success") {
+            alertBox.innerHTML = '<p class="correct-file">✅ File uploaded successfully!</p>';
+        }
+        else if (status === "wrong-file") {
+            alertBox.innerHTML = '<p class="wrong-file">❌ Invalid file type.</p>';
+        }
+        else if (status === "no-file") {
+            alertBox.innerHTML = '<p class="wrong-file>❌ Please upload a file.</p>'
+        }
+        alertBox.style.display = "block";
+        setTimeout(() => {
+            alertBox.style.display = "none";
+        }, 3000);
+    };
+    function result() {
+        const alertBox = document.getElementById("alert-box");
+        if (file === "", selectedshop === ""){
+            alertBox.innerHTML = '<p class="wrong-file">❌ Please upload a file and select a shop.</p>';
+            alertBox.style.display = "block";
+            setTimeout(() => {
+                alertBox.style.display = "none";
+            }, 3000);
+            return
+        }
+        if (file === "") {
+            alertBox.innerHTML = '<p class="wrong-file">❌ Please upload a file.</p>';
+            alertBox.style.display = "block";
+            setTimeout(() => {
+                alertBox.style.display = "none";
+            }, 3000);
+            return
+        }
+        if (selectedshop === "") {
+            alertBox.innerHTML = '<p class="wrong-file">❌ Please select a shop.</p>';
+            alertBox.style.display = "block";
+            setTimeout(() => {
+                alertBox.style.display = "none";
+            }, 3000);
+            return;
+        }
+        const type = selectedshop
+        const formdata = new FormData();
+        const fileInput = document.getElementById("fileInput");
+        formdata.append("file", fileInput.files[0]);
+        formdata.append("type", type);
+        fetch("/result", {method: "Post", body: formdata}).then(response => response.text()).then(data => {
+            if (data === "wrong-file") {
+                alertBox.innerHTML = '<p class="wrong-file">❌ Invalid file type.</p>';
+                alertBox.style.display = "block";
+                setTimeout(() => {
+                    alertBox.style.display = "none";
+                }, 3000);
+                return
+            }
+            if (data === "success") {
+                return window.location.href = "/result";
+            }
+        }
+        )
+    }
+
+</script>
+</html>

@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stock.css')}}"/>
+</head>
+<body>
+    <nav class="navbar">
+        <div id="navname">
+            <h2>Shop Management</h2>
+        </div>
+        <div id="nav-links">
+            <a href="/">Home</a>
+            <a href="/cal">Calculator</a>
+            <a href="/stat">Statistic</a>
+            <a href="/stocks">Stocks</a>
+        </div>
+    </nav>
+    <br><br><br><br><br><br>
+    <div class="alert-box" id="alert-box"></div>
+    <div id="addcard">
+        <button id="add" value="open" onclick="popup(this)"><h4>Add</h4><h1>+</h1></button>
+    </div>
+    <div id="tablecard">
+        <div>
+            <table id="week-1" class="weeks">
+                <tr class="tableheader">
+                    <th colspan="4">Week 1 ( {{weeks[1]}} )</th>
+                </tr>
+                <tr class="tableheader">
+                    <th>PO</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Edit</th>
+                </tr>
+                {% for PO in rows if PO[1] == 1 %}
+                {% if loop.first or PO[2] != loop.previtem[2] %}
+                <tr class="{{PO[5]}}tb" data-po="{{PO[2]}}" data-parent="POparent">  
+                    <td>{{PO[2]}}</td>
+                    <td><button class="hidebtn" value="{{PO[2]}}" onclick="showhide(this)">Hide</button></td>
+                    <td>{{total[PO[2]]}}</td>
+                    <td class="editbtn"><button class="edit" value="{{PO[2]}}" onclick="edit(this)">Edit</button></td>
+                </tr>
+                {% endif %}
+                <tr class="POchild" data-po="{{PO[2]}}" data-pd="{{PO[3]}}">
+                    <td></td>
+                    <td>{{PO[3]}}</td>
+                    <td>{{PO[4]}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <table id="week-2" class="weeks">
+                <tr class="tableheader">
+                    <th colspan="4">Week 2 ( {{weeks[2]}} )</th>
+                </tr>
+                <tr class="tableheader">
+                    <th>PO</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Edit</th>
+                </tr>
+                {% for PO in rows if PO[1] == 2 %}
+                {% if loop.first or PO[2] != loop.previtem[2] %}
+                <tr class="{{PO[5]}}tb" data-po="{{PO[2]}}" data-parent="POparent">  
+                    <td>{{PO[2]}}</td>
+                    <td><button class="hidebtn" value="{{PO[2]}}" onclick="showhide(this)">Hide</button></td>
+                    <td>{{total[PO[2]]}}</td>
+                    <td class="editbtn"><button class="edit" value="{{PO[2]}}" onclick="edit(this)">Edit</button></td>
+                </tr>
+                {% endif %}
+                <tr class="POchild" data-po="{{PO[2]}}" data-pd="{{PO[3]}}">
+                    <td></td>
+                    <td>{{PO[3]}}</td>
+                    <td>{{PO[4]}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <table id="week-3" class="weeks">
+                <tr class="tableheader">
+                    <th colspan="4">Week 3 ( {{weeks[3]}} )</th>
+                </tr>
+                <tr class="tableheader">
+                    <th>PO</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Edit</th>
+                </tr>
+                {% for PO in rows if PO[1] == 3 %}
+                {% if loop.first or PO[2] != loop.previtem[2] %}
+                <tr class="{{PO[5]}}tb" data-po="{{PO[2]}}" data-parent="POparent">  
+                    <td>{{PO[2]}}</td>
+                    <td><button class="hidebtn" value="{{PO[2]}}" onclick="showhide(this)">Hide</button></td>
+                    <td>{{total[PO[2]]}}</td>
+                    <td class="editbtn"><button class="edit" value="{{PO[2]}}" onclick="edit(this)">Edit</button></td>
+                </tr>
+                {% endif %}
+                <tr class="POchild" data-po="{{PO[2]}}" data-pd="{{PO[3]}}">
+                    <td></td>
+                    <td>{{PO[3]}}</td>
+                    <td>{{PO[4]}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <table id="week-4" class="weeks">
+                <tr class="tableheader">
+                    <th colspan="4">Week 4 ( {{weeks[4]}} )</th>
+                </tr>
+                <tr class="tableheader">
+                    <th>PO</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Edit</th>
+                </tr>
+                {% for PO in rows if PO[1] == 4 %}
+                {% if loop.first or PO[2] != loop.previtem[2] %}
+                <tr class="{{PO[5]}}tb" data-po="{{PO[2]}}" data-parent="POparent">  
+                    <td>{{PO[2]}}</td>
+                    <td><button class="hidebtn" value="{{PO[2]}}" onclick="showhide(this)">Hide</button></td>
+                    <td>{{total[PO[2]]}}</td>
+                    <td class="editbtn"><button class="edit" value="{{PO[2]}}" onclick="edit(this)">Edit</button></td>
+                </tr>
+                {% endif %}
+                <tr class="POchild" data-po="{{PO[2]}}" data-pd="{{PO[3]}}">
+                    <td></td>
+                    <td>{{PO[3]}}</td>
+                    <td>{{PO[4]}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div>
+            <table id="week-5" class="weeks">
+                <tr class="tableheader">
+                    <th colspan="4">Week 5 ( {{weeks[5]}} )</th>
+                </tr>
+                <tr class="tableheader">
+                    <th>PO</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Edit</th>
+                </tr>
+                {% for PO in rows if PO[1] == 5 %}
+                {% if loop.first or PO[2] != loop.previtem[2] %}
+                <tr class="{{PO[5]}}tb" data-po="{{PO[2]}}" data-parent="POparent">  
+                    <td>{{PO[2]}}</td>
+                    <td><button class="hidebtn" value="{{PO[2]}}" onclick="showhide(this)">Hide</button></td>
+                    <td>{{total[PO[2]]}}</td>
+                    <td class="editbtn"><button class="edit" value="{{PO[2]}}" onclick="edit(this)">Edit</button></td>
+                </tr>
+                {% endif %}
+                <tr class="POchild" data-po="{{PO[2]}}" data-pd="{{PO[3]}}">
+                    <td></td>
+                    <td>{{PO[3]}}</td>
+                    <td>{{PO[4]}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <table id="week-6" class="weeks">
+                <tr class="tableheader">
+                    <th colspan="4">Week 6 ( {{weeks[6]}} )</th>
+                </tr>
+                <tr class="tableheader">
+                    <th>PO</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Edit</th>
+                </tr>
+                {% for PO in rows if PO[1] == 6 %}
+                {% if loop.first or PO[2] != loop.previtem[2] %}
+                <tr class="{{PO[5]}}tb" data-po="{{PO[2]}}" data-parent="POparent">  
+                    <td>{{PO[2]}}</td>
+                    <td><button class="hidebtn" value="{{PO[2]}}" onclick="showhide(this)">Hide</button></td>
+                    <td>{{total[PO[2]]}}</td>
+                    <td class="editbtn"><button class="edit" value="{{PO[2]}}" onclick="edit(this)">Edit</button></td>
+                </tr>
+                {% endif %}
+                <tr class="POchild" data-po="{{PO[2]}}" data-pd="{{PO[3]}}">
+                    <td></td>
+                    <td>{{PO[3]}}</td>
+                    <td>{{PO[4]}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <table id="week-7" class="weeks">
+                <tr class="tableheader">
+                    <th colspan="4">Week 7 ( {{weeks[7]}} )</th>
+                </tr>
+                <tr class="tableheader">
+                    <th>PO</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Edit</th>
+                </tr>
+                {% for PO in rows if PO[1] == 7 %}
+                {% if loop.first or PO[2] != loop.previtem[2] %}
+                <tr class="{{PO[5]}}tb" data-po="{{PO[2]}}" data-parent="POparent">  
+                    <td>{{PO[2]}}</td>
+                    <td><button class="hidebtn" value="{{PO[2]}}" onclick="showhide(this)">Hide</button></td>
+                    <td>{{total[PO[2]]}}</td>
+                    <td class="editbtn"><button class="edit" value="{{PO[2]}}" onclick="edit(this)">Edit</button></td>
+                </tr>
+                {% endif %}
+                <tr class="POchild" data-po="{{PO[2]}}" data-pd="{{PO[3]}}">
+                    <td></td>
+                    <td>{{PO[3]}}</td>
+                    <td>{{PO[4]}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <table id="week-8" class="weeks">
+                <tr class="tableheader">
+                    <th colspan="4">Week 8 ( {{weeks[8]}} )</th>
+                </tr>
+                <tr class="tableheader">
+                    <th>PO</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Edit</th>
+                </tr>
+                {% for PO in rows if PO[1] == 8 %}
+                {% if loop.first or PO[2] != loop.previtem[2] %}
+                <tr class="{{PO[5]}}tb" data-po="{{PO[2]}}" data-parent="POparent">  
+                    <td>{{PO[2]}}</td>
+                    <td><button class="hidebtn" value="{{PO[2]}}" onclick="showhide(this)">Hide</button></td>
+                    <td>{{total[PO[2]]}}</td>
+                    <td class="editbtn"><button class="edit" value="{{PO[2]}}" onclick="edit(this)">Edit</button></td>
+                </tr>
+                {% endif %}
+                <tr class="POchild" data-po="{{PO[2]}}" data-pd="{{PO[3]}}">
+                    <td></td>
+                    <td>{{PO[3]}}</td>
+                    <td>{{PO[4]}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+        </table>
+        </div>
+    </div>
+    <div class="pop-up" id="pop-up">
+        <div id="window" class="window1">
+            <div>
+                <h3>New Purchase Order</h3>
+                <button id="close-button" value="close" onclick="popup(this)">&times;</button>
+            </div>
+            <div id="product-list">
+                <table class="PO">
+                    <tr>
+                        <th id="header-17mesh" colspan="2">♥️17丝网格真空袋</th>
+                    </tr>
+                    {% for item in products["17丝网格真空袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-19texture" colspan="2">♥️19丝纹路真空袋</th>
+                    </tr>
+                    {% for item in products["19丝纹路真空袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-22texture" colspan="2">♥️22丝纹路真空袋</th>
+                    </tr>
+                    {% for item in products["22丝纹路真空袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-pet" colspan="2">♥️16丝PET袋</th>
+                    </tr>
+                    {% for item in products["16丝PET袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-aluminum" colspan="2">♥️16丝镀鋁三边封</th>
+                    </tr>
+                    {% for item in products["16丝镀鋁三边封"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-nylon16" colspan="2">♥️16丝尼龙真空袋</th>
+                    </tr>
+                    {% for item in products["16丝尼龙真空袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-nylon24" colspan="2">♥️24丝尼龙真空袋</th>
+                    </tr>
+                    {% for item in products["24丝尼龙真空袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-retort" colspan="2">♥️20丝高温蒸煮袋</th>
+                    </tr>
+                    {% for item in products["20丝高温蒸煮袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-standup" colspan="2">♥️20丝磨砂自立自封袋</th>
+                    </tr>
+                    {% for item in products["20丝磨砂自立自封袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-flatbottom" colspan="2">♥️20丝磨砂平底自封袋</th>
+                    </tr>
+                    {% for item in products["20丝磨砂平底自封袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-white-standup" colspan="2">♥️24丝白磨砂自立自封袋</th>
+                    </tr>
+                    {% for item in products["24丝白磨砂自立自封袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-black-standup" colspan="2">♥️24丝黑磨砂自立自封袋</th>
+                    </tr>
+                    {% for item in products["24丝黑磨砂自立自封袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-goldcpp" colspan="2">♥️14丝金CPP阴阳自立自封</th>
+                    </tr>
+                    {% for item in products["14丝金CPP阴阳自立自封"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-white-flat" colspan="2">♥️24丝白磨砂消光平底自封</th>
+                    </tr>
+                    {% for item in products["24丝白磨砂消光平底自封"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-black-flat" colspan="2">♥️24丝黑磨砂消光平底自封</th>
+                    </tr>
+                    {% for item in products["24丝黑磨砂消光平底自封"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-nylonzip" colspan="2">♥️16丝尼龙自立自封袋</th>
+                    </tr>
+                    {% for item in products["16丝尼龙自立自封袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-pearl" colspan="2">♥️12丝珠光膜</th>
+                    </tr>
+                    {% for item in products["12丝珠光膜"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-clearzip" colspan="2">♥️高透锁骨夹链袋</th>
+                    </tr>
+                    {% for item in products["高透锁骨夹链袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-metal-flat" colspan="2">♥️16丝镀铝阴阳平底袋</th>
+                    </tr>
+                    {% for item in products["16丝镀铝阴阳平底袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-teabag" colspan="2">♥️茶包</th>
+                    </tr>
+                    {% for item in products["茶包"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-purefoil" colspan="2">♥️20丝纯铝风琴茶叶袋</th>
+                    </tr>
+                    {% for item in products["20丝纯铝风琴茶叶袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-metal-gusset" colspan="2">♥️16丝镀铝风琴茶叶袋</th>
+                    </tr>
+                    {% for item in products["16丝镀铝风琴茶叶袋"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="PO">
+                    <tr>
+                        <th id="header-others" colspan="2">♥️其它项目</th>
+                    </tr>
+                    {% for item in products["其它项目"] %}
+                    <tr class="PD">
+                        <td>{{ item }}</td>
+                        <td><button class="reduce" onclick="changeno(this)" value="reduce">&minus;</button><span class="count">0</span><button class="increase" onclick="changeno(this)" value="increase">&plus;</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="reset-submitcard">
+                <button id="reset" class="button" onclick="reset()">Reset</button>
+                <button id="submit" class="button" onclick="submitPO()">Submit</button>
+            </div>
+        </div>
+        <div id="window2" class="window2">
+            <div>
+                <h3>New Purchase Order</h3>
+                <button id="close-button" value="close" onclick="popup(this)">&times;</button>
+            </div>
+            <div id="product-list2">
+                <table id="summary-table" class="PO"></table>
+            </div>
+            <div>
+                <h3>Weeks</h3>
+                <div id="weekbtn">
+                    <button id="week1" class="wks" value="1" onclick="selectedwk(this)">1</button>
+                    <button id="week2" class="wks" value="2" onclick="selectedwk(this)">2</button>
+                    <button id="week3" class="wks" value="3" onclick="selectedwk(this)">3</button>
+                    <button id="week4" class="wks" value="4" onclick="selectedwk(this)">4</button>
+                    <button id="week5" class="wks" value="5" onclick="selectedwk(this)">5</button>
+                    <button id="week6" class="wks" value="6" onclick="selectedwk(this)">6</button>
+                    <button id="week7" class="wks" value="7" onclick="selectedwk(this)">7</button>
+                    <button id="week8" class="wks" value="8" onclick="selectedwk(this)">8</button>
+                </div>
+            </div>
+            <div>
+                <h3>Logistics</h3>
+                <div class="logbtn">
+                    <button id="log1" class="log" value="log1" onclick="selectedlog(this)">🟢</button>
+                    <button id="log2" class="log" value="log2" onclick="selectedlog(this)">🔴</button>
+                </div>
+            </div>
+            <div>
+                <h3>PO no.</h3>
+                <div>
+                    <input type="text" placeholder="eg. PO1234" id="POtext">
+                </div>
+            </div>
+            <div id="back-submitcard">
+                <button id="back" class="button" onclick="back()">Back</button>
+                <button id="submit" class="button" onclick="submit2()">Submit</button>
+            </div>
+        </div>
+        <div id="window3" class="window3">
+            <div id="windowtitle">
+            </div>
+            <div>
+                <table id="PO-table" class="stock-table">
+
+                </table>
+            </div>
+            <div id="back-submitcard">
+                <button id="del" class="button" onclick="del()">Delete</button>
+                <button id="submit" class="button" onclick="submit3()">Submit</button>
+            </div>
+        </div>
+    </div>
+</body>
+    <script>
+        const alertbox = document.getElementById("alert-box")
+        function popup(button) {
+            const popup = document.getElementById("pop-up");
+            const window1 = document.getElementById("window")
+            const window2 = document.getElementById("window2")
+            const window3 = document.getElementById("window3")
+
+            console.log(button.value);
+
+            if (button.value === "open") {
+                popup.classList.add("open");
+            }
+
+            else if (button.value === "close") {
+                popup.classList.remove("open");
+                window1.classList.remove("submit")
+                window2.classList.remove("submit")
+                const selectedwk = document.querySelector(".wks.active")
+                if (selectedwk){
+                    selectedwk.classList.remove("active")
+                }
+                const selectedlog = document.querySelector(".log.active")
+                if (selectedlog){
+                    selectedlog.classList.remove("active")
+                }
+                reset()
+            }
+            else if (button.value === "close2") {
+                popup.classList.remove("open")
+                window1.classList.remove("editing")
+                window2.classList.remove("editing")
+                window3.classList.remove("editing")
+            }
+        }
+
+        function changeno(button) {
+            const incremental = button.value
+            if (incremental === "reduce") {
+                const count = button.nextElementSibling;
+    
+                if (Number(count.textContent) > 0) {
+                    count.textContent = Number(count.textContent) - 1;
+                }
+            }
+            else if (incremental === "increase") {
+                const count = button.previousElementSibling;
+                count.textContent = Number(count.textContent) + 1;
+            }
+        }
+
+        function changeno2(button) {
+            let count;
+            
+            const incremental = button.value
+            
+            if (incremental === "reduce") {
+                count = button.nextElementSibling;
+                if (Number(count.textContent) > 0) {
+                    count.textContent = Number(count.textContent) - 1;
+                }
+                
+
+            }
+            else if (incremental === "increase") {
+                count = button.previousElementSibling;
+                if (Number(count.textContent) < count.dataset.maxcount)
+                    count.textContent = Number(count.textContent) + 1;
+            }
+            const pd = count.closest("tr").querySelector("td:first-child");
+            if (Number(count.textContent) === 0) {
+                pd.classList.add("done");
+            } else {
+                pd.classList.remove("done");
+            }
+        }
+
+        function reset() {
+            const counts = document.getElementsByClassName("count")
+            for (let count of counts) {
+                count.innerText = "0";
+            }
+        }
+        
+        function submitPO() {
+            const window1 = document.getElementById("window")
+            const window2 = document.getElementById("window2")
+            const counts = document.getElementsByClassName("count")
+            const table = document.getElementById("summary-table")
+            const header_ids = {
+                "17丝网格真空袋": "header-17mesh",
+                "19丝纹路真空袋": "header-19texture",
+                "22丝纹路真空袋": "header-22texture",
+                "16丝PET袋": "header-pet",
+                "16丝镀鋁三边封": "header-aluminum",
+                "16丝尼龙真空袋": "header-nylon16",
+                "24丝尼龙真空袋": "header-nylon24",
+                "20丝高温蒸煮袋": "header-retort",
+                "20丝磨砂自立自封袋": "header-standup",
+                "20丝磨砂平底自封袋": "header-flatbottom",
+                "24丝白磨砂自立自封袋": "header-white-standup",
+                "24丝黑磨砂自立自封袋": "header-black-standup",
+                "14丝金CPP阴阳自立自封": "header-goldcpp",
+                "24丝白磨砂消光平底自封": "header-white-flat",
+                "24丝黑磨砂消光平底自封": "header-black-flat",
+                "16丝尼龙自立自封袋": "header-nylonzip",
+                "12丝珠光膜": "header-pearl",
+                "高透锁骨夹链袋": "header-clearzip",
+                "16丝镀铝阴阳平底袋": "header-metal-flat",
+                "茶包": "header-teabag",
+                "20丝纯铝风琴茶叶袋": "header-purefoil",
+                "16丝镀铝风琴茶叶袋": "header-metal-gusset",
+                "其它项目": "header-others"
+            }
+            let product = ""
+            const formdata = new FormData()
+            for (let count of counts) {
+                if (Number(count.innerText) > 0) {
+                    product = count.closest("tr").querySelector("td:first-child").innerText;
+                    formdata.append("products", product)
+                    formdata.append("count", count.innerText)
+                }
+            }
+            if (product != "") {
+                table.innerHTML = ""
+                fetch("/stock", {method: "POST", body: formdata}).then(response => response.json()).then(data => {
+                    console.log(data)
+                    for (const [key, values] of Object.entries(data)) {
+                        const header = document.createElement("tr")
+                        header.classList.add("PO")
+                        header.innerHTML = `<th colspan="2" id="${header_ids[key]}">${key}</th>`
+                        table.appendChild(header)
+                        for (const value of values) {
+                            const row = document.createElement('tr')
+                            row.classList.add("PD")
+                            row.innerHTML = `<td class="SKU">${value[0]}</td><td class="QTY">${value[1]}</td>`
+                            table.appendChild(row)
+                        }
+                    }
+                })
+                window1.classList.add("submit")
+                window2.classList.add("submit")
+            }
+            else {
+                console.log("else-hit")
+                alertbox.classList.add("wrong")
+                alertbox.innerHTML = '<p>❌Please select a product.</p>'
+                alertbox.style.opacity = "1";
+                setTimeout(() => {
+                    alertbox.style.opacity = "0";
+                    setTimeout(() => {
+                        alertbox.classList.remove("wrong")
+                    }, 500)
+                }, 3000);
+            }
+        }
+
+        function selectedwk(button) {
+            const active = document.querySelector(".wks.active")
+            if (active) {
+                active.classList.remove("active")
+            }
+            const week = button.value
+            button.classList.add("active")
+        }
+
+        function selectedlog(button) {
+            const active = document.querySelector(".log.active")
+            if (active) {
+                active.classList.remove("active")
+            }
+            const log = button.value
+            button.classList.add("active")
+        }
+
+        function submit2() {
+            const wkselected = document.querySelector(".wks.active")
+            const logselected = document.querySelector(".log.active")
+            const POno = document.getElementById("POtext")
+            const formdata = new FormData()
+            let totalqty = 0
+            if (wkselected && logselected && POno.value.trim()) {
+                const wk = wkselected.value
+                const log = logselected.value
+                const PO = POno.value.trim()
+                formdata.append("POcheck", PO)
+                fetch("/check-po", {method:"POST", body:formdata}).then(response => response.text()).then(data => {
+                    if (data === "exist") {
+                        alertbox.classList.add("wrong")
+                        alertbox.innerHTML = "<p>❌PO already exist, try another one.</p>"
+                        alertbox.style.opacity = 1
+                        setTimeout(() => {
+                            alertbox.style.opacity = 0
+                            setTimeout(() => {
+                                alertbox.classList.remove("wrong")
+                            }, 500);
+                        }, 3000);
+                    }
+                    else {
+                        const table = document.getElementById(`week-${wk}`)
+                        const sku = document.getElementsByClassName("SKU")
+                        const qty = document.getElementsByClassName("QTY")
+                        for (const count of qty) {
+                            totalqty += Number(count.innerText)
+                        }
+                        const row = document.createElement("tr")
+                        row.classList.add(`${log}tb`)
+                        row.dataset.po = PO
+                        row.innerHTML = `<td>${PO}</td><td><button class="hidebtn" value="${PO}" onclick="showhide(this)">Hide</button></td><td>${totalqty}</td><td class="editbtn"><button class="edit" value="${PO}" onclick="edit(this)">Edit</button></td>`
+                        table.appendChild(row)
+                        formdata.append("wk", wk)
+                        formdata.append("PO", PO)
+                        formdata.append("log", log)
+                        for (let i = 0; i < sku.length; i++) {
+                            const pd = sku[i].innerText
+                            const count = qty[i].innerText
+                            const row2 = document.createElement("tr")
+                            row2.classList.add("POchild")
+                            row2.innerHTML = `<td></td><td>${pd}</td><td>${count}</td><td></td>`
+                            row2.dataset.po = PO
+                            row2.dataset.pd = pd
+                            table.appendChild(row2)
+                            formdata.append("pd", pd)
+                            formdata.append("count", count)
+                        }
+                        const popup = document.getElementById("pop-up");
+                        const window1 = document.getElementById("window")
+                        const window2 = document.getElementById("window2")
+                        popup.classList.remove("open");
+                        window1.classList.remove("submit")
+                        window2.classList.remove("submit")
+                        const selectedwk = document.querySelector(".wks.active")
+                        if (selectedwk){
+                            selectedwk.classList.remove("active")
+                        }
+                        const selectedlog = document.querySelector(".log.active")
+                        if (selectedlog){
+                            selectedlog.classList.remove("active")
+                        }
+                        reset()
+                        POno.value = ""
+                        fetch("/save-db", {method: "post", body: formdata}).then(response => response.text()).then(data => console.log(data))
+                    }
+                })
+            }
+            else {
+                alertbox.classList.add("wrong")
+                alertbox.innerHTML = "<p>❌Please input the required field.</p>"
+                alertbox.style.opacity = 1
+                setTimeout(() => {
+                    alertbox.style.opacity = 0
+                    setTimeout(() => {
+                        alertbox.classList.remove("wrong")
+                    }, 500);
+                }, 3000);
+            }
+        }
+
+        function back() {
+            const window1 = document.getElementById("window")
+            const window2 = document.getElementById("window2")
+            window1.classList.remove("submit")
+            window2.classList.remove("submit")
+        }
+
+        function edit(button) {
+            const po = button.value
+            const text_ids = {
+                "17丝网格真空袋": "text-17mesh",
+                "19丝纹路真空袋": "text-19texture",
+                "22丝纹路真空袋": "text-22texture",
+                "16丝PET袋": "text-pet",
+                "16丝镀鋁三边封": "text-aluminum",
+                "16丝尼龙真空袋": "text-nylon16",
+                "24丝尼龙真空袋": "text-nylon24",
+                "20丝高温蒸煮袋": "text-retort",
+                "20丝磨砂自立自封袋": "text-standup",
+                "20丝磨砂平底自封袋": "text-flatbottom",
+                "24丝白磨砂自立自封袋": "text-white-standup",
+                "24丝黑磨砂自立自封袋": "text-black-standup",
+                "14丝金CPP阴阳自立自封": "text-goldcpp",
+                "24丝白磨砂消光平底自封": "text-white-flat",
+                "24丝黑磨砂消光平底自封": "text-black-flat",
+                "16丝尼龙自立自封袋": "text-nylonzip",
+                "12丝珠光膜": "text-pearl",
+                "高透锁骨夹链袋": "text-clearzip",
+                "16丝镀铝阴阳平底袋": "text-metal-flat",
+                "茶包": "text-teabag",
+                "20丝纯铝风琴茶叶袋": "text-purefoil",
+                "16丝镀铝风琴茶叶袋": "text-metal-gusset",
+                "其它项目": "text-others"
+            }
+            const formdata = new FormData()
+            const window3 = document.getElementById("window3")
+            window3.dataset.editpo = po
+            formdata.append("po", po)
+            fetch("/get-po", {method:"POST", body:formdata}).then(response => response.json()).then(data => {
+                const container1 = document.getElementById("windowtitle")
+                const table = document.getElementById("PO-table")
+                table.innerHTML = ""
+                container1.innerHTML = `<h3>${po}</h3><button id="close-button" value="close2" onclick="popup(this)">&times;</button>`
+                for (const [key, value] of Object.entries(data)) {
+                    const POtr = document.createElement("tr")
+                    POtr.innerHTML = `<td id="${text_ids[value[0]]}" class="pd2">${key}</td><td><button class="reduce" onclick="changeno2(this)" value="reduce">&minus;</button><span class="change" data-maxcount="${value[1]}">${value[1]}</span><button class="increase" onclick="changeno2(this)" value="increase">&plus;</button></td><td><div class="toggle" onclick="toggle(this)"><div class="knob"></div></div></td>`
+                    table.appendChild(POtr)
+                }
+                const popup = document.getElementById("pop-up")
+                popup.classList.add("open");
+                const window1 = document.getElementById("window")
+                const window2 = document.getElementById("window2")
+                window1.classList.add("editing")
+                window2.classList.add("editing")
+                window3.classList.add("editing")
+            })
+            
+        }
+        
+        function showhide(button) {
+            const po = button.value
+            const status = button.innerText
+            if (status === "Show") {
+                button.innerText = "Hide"
+                document.querySelectorAll(`.POchild[data-po="${po}"]`).forEach(row => row.style.display = "")
+            }
+            else {
+                button.innerText = "Show"
+                document.querySelectorAll(`.POchild[data-po="${po}"]`).forEach(row => row.style.display = "none")
+            }
+        }
+
+        function toggle(element) {
+            element.classList.toggle("active");
+            const pd = element.closest("tr").querySelector("td:first-child")
+            const count = element.closest("tr").querySelector(".change")
+            if (element.classList.contains("active")) {
+                pd.classList.add("done");
+                
+                count.dataset.prevcount = count.innerText;
+                count.innerText = 0
+            } else {
+                pd.classList.remove("done");
+                count.innerText = count.dataset.prevcount || 0;
+            }
+        }
+
+        function del() {
+            const popup = document.getElementById("pop-up")
+            const window1 = document.getElementById("window")
+            const window2 = document.getElementById("window2")
+            const window3 = document.getElementById("window3")
+            const po = window3.dataset.editpo
+            const formdata = new FormData()
+            formdata.append("po", po)
+            fetch("/remove-db", {method:"POST", body:formdata}).then(response => response.text()).then(() => {
+                document.querySelectorAll(`[data-po="${po}"]`).forEach(row => row.remove())
+                popup.classList.remove("open")
+                window1.classList.remove("editing")
+                window2.classList.remove("editing")
+                window3.classList.remove("editing")
+            })
+            
+        }
+
+        function submit3() {
+            const popup = document.getElementById("pop-up")
+            const window1 = document.getElementById("window")
+            const window2 = document.getElementById("window2")
+            const window3 = document.getElementById("window3")
+            const po = window3.dataset.editpo
+            const pd = document.getElementsByClassName("pd2")
+            const count = document.getElementsByClassName("change")
+            let total = 0
+            const formdata = new FormData()
+            formdata.append("po", po)
+            for (let i = 0; i < pd.length; i++){
+                if (Number(count[i].innerText) === 0) {
+                    document.querySelector(`.POchild[data-pd="${pd[i].innerText}"]`).remove()
+                }
+                else {
+                    document.querySelector(`.POchild[data-pd="${pd[i].innerText}"]`).querySelector("td:nth-child(3)").innerText = count[i].innerText
+                }
+                formdata.append("pd", pd[i].innerText)
+                formdata.append("count", count[i].innerText)
+                total += Number(count[i].innerText)
+            }
+            document.querySelector(`[data-po="${po}"][data-parent="POparent"]`).querySelector("td:nth-child(3)").innerText = total
+            fetch("/stock-update", {method:"POST", body:formdata}).then(response => response.text()).then(() => {
+                
+                popup.classList.remove("open")
+                window1.classList.remove("editing")
+                window2.classList.remove("editing")
+                window3.classList.remove("editing")
+            })
+        }
+    </script>
+</html>

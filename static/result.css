@@ -1,0 +1,84 @@
+body {
+    background-image: url("image/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.navbar {
+    background-color: #1f2937;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    align-items: center;
+    background-size: cover;
+}
+
+#nav-links a{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8%;
+    position: relative;
+}
+
+#nav-links {
+    display: flex;
+    padding-right: 13%;
+}
+
+.navbar a:hover {
+    color: #5da2e7;
+}
+
+#navname {
+    color: white;
+    font-size: 18px;
+    align-items: left;
+    padding-left: 3%;
+}
+
+#card {
+    background-color: white;
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 60px;
+    padding-right: 60px;
+    border-radius: 20px;
+    border: 8px double;
+}
+
+.card {
+    background-color: rgb(136, 136, 136);
+    position: relative;
+    width: 20%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#tablecard {
+    background-color: white;
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 60px;
+    padding-right: 60px;
+    border-radius: 20px;
+    border: 8px double;
+}
