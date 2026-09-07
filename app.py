@@ -397,7 +397,7 @@ def stock():
     if row:
         wk1date = date.fromisoformat(row[0])
         timedif = (today - wk1date).days // 7
-        if timedif > 0:
+        if timedif >= 1:
             cursor.execute(
                 "UPDATE purchase_order "
                 "SET Week = Week - ? "
@@ -412,7 +412,7 @@ def stock():
                 f"-{timedif * 7} days",
                 f"-{timedif * 7} days"
             ))
-    for i in range(9):
+    for i in range(8):
         endweek = today + timedelta(days=6)
         weeks[i] = str(today)[5:] + " - " + str(endweek)[5:]
         today = today + timedelta(days=7)

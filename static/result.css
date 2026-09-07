@@ -60,6 +60,16 @@ body {
     border: 8px double;
 }
 
+.qty {
+    color: white;
+}
+
+.name {
+    color: rgb(71, 91, 71);
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .card {
     background-color: rgb(136, 136, 136);
     position: relative;
@@ -81,4 +91,70 @@ body {
     padding-right: 60px;
     border-radius: 20px;
     border: 8px double;
+    text-align: center;
+}
+
+#tablecard table {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+#tablecard th, #tablecard td {
+    border: 2px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+#tablecard th {
+    background-color: #585858;
+    color: white;
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    #navname {
+        padding-left: 0;
+    }
+
+    #nav-links {
+        padding-right: 0;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #nav-links a {
+        padding: 5px;
+        font-size: 16px;
+    }
+
+    #card {
+        width: 95%;
+        height: auto;
+        padding: 15px;
+        box-sizing: border-box;
+
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #tablecard {
+        width: 95%;
+        padding: 15px;
+        box-sizing: border-box;
+
+        overflow-x: auto;
+    }
 }
