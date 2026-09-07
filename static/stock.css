@@ -762,12 +762,64 @@ body {
     }
     #navname {
         padding-left: 0;
+        font-size: 16px;
     }
     #add {
-        width: 20%;
-        height: 5vh;
+        width: 80px;
+        height: 40px;
     }
-    #addcard{
-        padding-top: 10px;
+    #tablecard {
+        width: 100%;
+        padding: 5px;
+        height: 70vh;
+        border-radius: 0;
+    }
+    #tablecard div {
+        flex-direction: column;
+    }
+    .weeks {
+        min-width: 100%;
+        margin-bottom: 15px;
+    }
+    .window1,
+    .window2,
+    .window3 {
+        width: 95%;
+        height: 90%;
+        padding: 10px;
+    }
+    .button {
+        width: 90px;
+        height: 40px;
+    }
+    #weekbtn {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    #weekbtn button {
+        flex: 1 1 20%;
+        min-width: 50px;
+    }
+    #product-list,
+    #product-list2 {
+        overflow-x: auto;
+    }
+    .stock-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+    .toggle {
+        width: 50px;
+        height: 25px;
+    }
+    .knob {
+        width: 21px;
+        height: 21px;
+    }
+    .toggle.active .knob {
+        left: 27px;
+    }
+    #POtext {
+        font-size: 16px;
     }
 }
