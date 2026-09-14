@@ -8,39 +8,29 @@ The system helps manage inventory, purchase orders, sales calculations, and busi
 
 ## Features
 
-### 📦 Inventory Management
-- Track stock quantities
-- View inventory by week
-- Organize products by category
-- Update stock levels
+### Inventory Management
+- Track shipment quantities
+- View upcoming shipment by weeks
 
-### 📝 Purchase Order Management
+### Purchase Order Management
 - Create purchase orders
 - Edit existing orders
 - Track logistics status
 - Expand and collapse order details
 - Group products under a single PO
 
-### 🚚 Logistics Tracking
-- Monitor order status
-- Mark completed items
-- Manage delivery progress
-
-### 🧮 Sales Calculator
+### Sales Calculator
 - Upload Excel reports
 - Process sales data automatically
-- Support multiple shop platforms
-- Generate calculations from uploaded files
 
-### 📊 Statistics Dashboard
+### Statistics Dashboard (Future)
 - View business performance
 - Analyze sales information
-- Display inventory-related data
+- Display inventory related data
 
-### 📱 Responsive Design
+### UI friendly
 - Desktop support
-- Mobile-friendly layout
-- Interactive user interface
+- Mobile friendly
 
 ---
 
@@ -48,19 +38,21 @@ The system helps manage inventory, purchase orders, sales calculations, and busi
 
 ### Home Page
 
-![Home Page](screenshots/home.png)
-
-### Stock Management
-
-![Stock Management](screenshots/stocks.png)
-
-### Purchase Order Editor
-
-![Purchase Order Editor](screenshots/edit-po.png)
+![Home Page](static/image/Homepage.png)
 
 ### Calculator
 
 ![Calculator](screenshots/calculator.png)
+
+![Result](screenshots/calculator.png)
+
+### Stock Management
+
+![Stock Management](static/image/)
+
+### Purchase Order Editor
+
+![Purchase Order Editor](screenshots/edit-po.png)
 
 ### Statistics Dashboard
 
@@ -122,23 +114,18 @@ Previously, inventory and purchase orders were handled manually, making it diffi
 
 The project also allowed me to gain practical experience in:
 
-- Full-stack web development
-- Database management
-- Responsive UI design
-- JavaScript DOM manipulation
-- Flask backend development
-- Git and version control
+- Developing website
+- HTML, JS, CSS, and DB experiences
+- Learn new python libraries(times, csv, flask)
 
 ---
 
 ## Future Improvements
 
-- User authentication and login system
-- Multiple user roles
+- Security and login system
 - Excel export functionality
-- Advanced analytics dashboard
-- Automated inventory alerts
-- Cloud deployment
+- Analysis system
+- Data chart
 
 ---
 
