@@ -44,13 +44,20 @@ The system helps manage inventory, purchase orders, sales calculations, and busi
 
 ![Calculator](static/image/Calculatepage.png)
 
+### Result
+
 ![Result](static/image/Resultpage.png)
 
 ### Stock Management
 
 ![Stock Management](static/image/SMpage.png)
 
-### Purchase Order Editor
+### Add PO
+
+![Purchase Order Editor](static/image/AddPO.png)
+![Purchase Order Editor](static/image/AddPO2.png)
+
+### PO Editor
 
 ![Purchase Order Editor](static/image/EditPO.png)
 
